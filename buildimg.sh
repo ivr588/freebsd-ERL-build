@@ -13,6 +13,10 @@ IMGFILE=$2
 export TARGET=mips
 export TARGET_ARCH=mips64
 export KERNCONF=ERL
+export WITH_MALLOC_PRODUCTION=
+export WITHOUT_REPRODUCIBLE_BUILD=
+export WITH_SVN=
+export OPTIONS_SET+=OPTIMIZED_CFLAGS
 
 # Create working space
 WORKDIR=`env TMPDIR=\`pwd\` mktemp -d -t ERLBUILD`
@@ -33,7 +37,7 @@ cp /usr/local/bin/qemu-${TARGET_ARCH}-static ${WORKDIR}/tree/qemu
 mount -t devfs devfs ${WORKDIR}/tree/dev
 
 # Install packages
-chroot ${WORKDIR}/tree /qemu pkg bootstrap -y
+chroot ${WORKDIR}/tree /qemu pkg bootstrap -f
 chroot ${WORKDIR}/tree /qemu pkg install -y djbdns isc-dhcp44-server
 
 # DNS setup
@@ -143,7 +147,7 @@ rmdir ${WORKDIR}/FAT32
 mdconfig -d -u ${mddev}
 
 # Create UFS filesystem
-makefs -f 16384 -B big -s 1600m ${WORKDIR}/UFS.img ${WORKDIR}/tree
+makefs -f 32768 -B big -s 32768m ${WORKDIR}/UFS.img ${WORKDIR}/tree
 
 # Create complete disk image
 mkimg -s mbr		\
