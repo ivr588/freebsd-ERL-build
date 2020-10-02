@@ -16,7 +16,6 @@ export KERNCONF=ERL
 export WITH_MALLOC_PRODUCTION=
 export WITHOUT_REPRODUCIBLE_BUILD=
 export WITH_SVN=
-export OPTIONS_SET+=OPTIMIZED_CFLAGS
 
 # Create working space
 WORKDIR=`env TMPDIR=\`pwd\` mktemp -d -t ERLBUILD`
