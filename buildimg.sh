@@ -146,7 +146,7 @@ rmdir ${WORKDIR}/FAT32
 mdconfig -d -u ${mddev}
 
 # Create UFS filesystem
-makefs -f 32768 -B big -s 32768m ${WORKDIR}/UFS.img ${WORKDIR}/tree
+makefs -f 16384 -B big -s 8000m ${WORKDIR}/UFS.img ${WORKDIR}/tree
 
 # Create complete disk image
 mkimg -s mbr		\
