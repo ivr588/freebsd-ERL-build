@@ -33,7 +33,7 @@ cp /usr/local/bin/qemu-${TARGET_ARCH}-static ${WORKDIR}/tree/qemu
 mount -t devfs devfs ${WORKDIR}/tree/dev
 
 # Install packages
-chroot ${WORKDIR}/tree /qemu pkg bootstrap -y
+chroot ${WORKDIR}/tree /qemu pkg bootstrap
 chroot ${WORKDIR}/tree /qemu pkg install -y djbdns isc-dhcp44-server
 
 # DNS setup
